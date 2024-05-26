@@ -1,12 +1,11 @@
 import React from "react";
-// import { IoLibrary } from "react-icons";
-// import { MdHomeFilled, MdSearch } from "react-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouse,
   faMagnifyingGlass,
   faDatabase,
 } from "@fortawesome/free-solid-svg-icons";
+import PlayList from "./PlayList";
 export default function Sidebar() {
   return (
     <div className="bg-black text-[#b3b3b3] flex flex-col h-[100%] w-[100%]">
@@ -33,6 +32,7 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
+      <PlayList />
     </div>
   );
 }
