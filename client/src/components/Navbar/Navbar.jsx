@@ -5,7 +5,7 @@ import { faUser, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const [{ userInfo }] = useStateProvider();
-  console.log("Username from Navbar", userInfo);
+
   return (
     <div className="flex justify-between items-center p-[2rem] h-[15vh] sticky top-0 transition duration-300 ease-in-out bg-none">
       <div className="search_bar bg-white w-[30%] py-[0.4rem] px-[1rem] rounded-[2rem] flex items-center gap-[0.5rem] ">

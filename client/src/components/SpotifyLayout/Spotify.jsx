@@ -19,12 +19,12 @@ export default function Spotify() {
           "Content-Type": "application/json",
         },
       });
-      console.log("Data", data);
+      
       const userInfo = {
         userId: data.id,
         username: data.display_name,
       };
-      console.log("user info ", userInfo.username);
+     
       dispatch({ type: reducerCases.SET_USER, userInfo });
     };
     getUserINfo();
