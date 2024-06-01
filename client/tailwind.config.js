@@ -5,12 +5,12 @@ export default {
     extend: {
       colors: {
         spotifyGreen: "#1db954",
-        buttonGreen: "#49f585"
+        buttonGreen: "#49f585",
       },
-      height:{
-        "20vh" : "20vh",
-      }
+      height: {
+        "20vh": "20vh",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };

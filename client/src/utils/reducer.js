@@ -4,7 +4,8 @@ export const initialState = {
   token: null,
   playlists: [],
   userInfo: null,
-  selectedPlaylistsId: "2UfHtymrtUrwzTYb7PgEGR",
+  selectedPlaylistId: "2Wn4MxLYBrKTjCXxPx9xw5",
+  selectedPlaylist: null,
 };
 
 const reducer = (state, action) => {
@@ -29,11 +30,11 @@ const reducer = (state, action) => {
       };
     }
 
-    case reducerCases.SET_PLAYLIST:{
+    case reducerCases.SET_PLAYLIST: {
       return {
-       ...state,
+        ...state,
         selectedPlaylist: action.selectedPlaylist,
-      }
+      };
     }
     default:
       return state;

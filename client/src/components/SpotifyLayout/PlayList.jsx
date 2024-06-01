@@ -18,11 +18,13 @@ export default function PlayList() {
             },
           }
         );
+
         const { items } = response.data;
+
         const playlists = items.map(({ name, id }) => {
           return { name, id };
         });
-        // console.log("playlists", playlists);
+
         dispatch({ type: reducerCases.SET_PYALISTS, playlists });
       } catch (error) {
         console.log("Error fetching playlist: " + error);
@@ -34,7 +36,7 @@ export default function PlayList() {
   }, [token, dispatch]);
   return (
     <div className="h-[100%] overflow-hidden">
-      <ul className="list-none flex flex-col gap-[1rem] p-[1rem] h-[55vh] max-h-[100%] overflow-auto ">
+      <ul className="list-none flex flex-col gap-[1rem] p-[1rem] h-[55vh] max-h-[100%]  overflow-auto scrollbar-thin scrollbar-thumb-gray-400">
         {playlists.map(({ name, id }) => {
           return (
             <li
