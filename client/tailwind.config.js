@@ -10,6 +10,9 @@ export default {
       height: {
         "20vh": "20vh",
       },
+      boxShadow: {
+        costom: "rgba(0 , 0 , 0 , 0.25) 0px 25px 50px -12px",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")],

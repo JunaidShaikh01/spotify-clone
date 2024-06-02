@@ -54,35 +54,38 @@ export default function Body() {
       {selectedPlaylist && (
         <>
           <div className="playList mx-[2rem] flex items-center gap-[2rem]">
-            <div className="Image h-[15rem]">
+            <div className="Image ">
               <img
                 src={selectedPlaylist.image}
                 alt="Selected PlayList"
-                srcset="" className="shae"
+                srcset=""
+                className="h-[15rem] shadow-custom"
               />
             </div>
-            <div className="details">
+            <div className="details flex flex-col gap-[1rem] text-[#e0dede]">
               <span className="type">PLAYLIST</span>
-              <h1 className="title">{selectedPlaylist.name}</h1>
+              <h1 className="title text-white text-4xl">
+                {selectedPlaylist.name}
+              </h1>
               <p className="description">{selectedPlaylist.description}</p>
             </div>
           </div>
           <div className="list">
-            <div className="header_row">
-              <div className="col">
+            <div className="header_row flex gap-4 mt-[1rem] text-[#dddcdc] sticky top-[15vh] py-[1rem] px-[3rem] transition-all duration-300 ease-in-out">
+              <div className="col flex-grow-30 basis-[0px] ">
                 <span>#</span>
               </div>
-              <div className="col">
+              <div className="col flex-grow-[300] basic-[0px]">
                 <span>TITLE</span>
               </div>
-              <div className="col">
+              <div className="col flex-grow-[200] basic-[0px]">
                 <span>ALBUM</span>
               </div>
-              <div className="col">
+              <div className="col flex-grow-[10] basic-[0px]">
                 <span>#</span>
               </div>
             </div>
-            <div className="tracks">
+            <div className="tracks my-[2rem] flex flex-col mb-[5rem] ">
               {selectedPlaylist.tracks.map(
                 (
                   {
@@ -98,23 +101,31 @@ export default function Body() {
                   index
                 ) => {
                   return (
-                    <div className="row" key={id}>
-                      <div className="col">
+                    <div
+                      className="row flex px-4 py-2 hover:bg-[rgba(0,0,0,0.7)] "
+                      key={id}
+                    >
+                      <div className="col flex-shrink-0 flex-basic-[10%] flex items-center text-[#dddcdc]">
                         <span>{index + 1}</span>
                       </div>
-                      <div className="col detail">
+                      <div className="col flex-grow flex-basic-[55%] detail flex items-center text-[#dddcdc] gap-[1rem]">
                         <div className="image">
-                          <img src={image} alt="track" srcset="" />
+                          <img
+                            src={image}
+                            alt="track"
+                            srcset=""
+                            className="h-[40px] w-[40px]"
+                          />
                         </div>
-                        <div className="info">
+                        <div className="info flex flex-col">
                           <span className="name">{name}</span>
                           <span>{artists}</span>
                         </div>
                       </div>
-                      <div className="col">
+                      <div className="col flex-shrink-0 flex-basic-[30%] flex items-center text-[#dddcdc]">
                         <span>{album}</span>
                       </div>
-                      <div className="col">
+                      <div className="col flex-shrink-0 flex-basic-[5%] flex items-center text-[#dddcdc]">
                         <span>{duration}</span>
                       </div>
                     </div>
