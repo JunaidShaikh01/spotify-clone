@@ -3,11 +3,15 @@ import { useStateProvider } from "../../utils/StateProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-export default function Navbar() {
+export default function Navbar({ navBackground }) {
   const [{ userInfo }] = useStateProvider();
 
   return (
-    <div className="flex justify-between items-center p-[2rem] h-[15vh] sticky top-0 transition duration-300 ease-in-out bg-none">
+    <div
+      className={`flex justify-between items-center p-[2rem] h-[15vh] sticky top-0 transition duration-300 ease-in-out ${
+        navBackground ? "bg-[rgba(0,0,0,0.7)]" : "bg-none"
+      }`}
+    >
       <div className="search_bar bg-white w-[30%] py-[0.4rem] px-[1rem] rounded-[2rem] flex items-center gap-[0.5rem] ">
         <FontAwesomeIcon icon={faMagnifyingGlass} />
         <input

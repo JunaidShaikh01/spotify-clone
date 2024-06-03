@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useStateProvider } from "../../utils/StateProvider";
 import axios from "axios";
 import { reducerCases } from "../../utils/constants";
-export default function Body() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+export default function Body({ headerBackground }) {
   const [{ token, selectedPlaylistId, selectedPlaylist }, dispatch] =
     useStateProvider();
 
@@ -19,6 +21,7 @@ export default function Body() {
             },
           }
         );
+        console.log("Response: ", response);
         const selectedPlaylist = {
           id: response.data.id,
           name: response.data.name,
@@ -28,17 +31,20 @@ export default function Body() {
           image: response.data.images[0].url,
           tracks: response.data.tracks.items.map(({ track }) => ({
             id: track.id,
-            name: track.name,
-            artists: track.artists.map((artist) => {
-              artist.name;
-            }),
+            name: track.name.split("(")[0].trim(),
+
+            // artists: track.artists.map((artist) => artist.name[0]),
+            artists: track.artists[0].name,
             image: track.album.images[2].url,
-            duration: track.duration,
-            album: track.album.name,
+            duration: track.duration_ms,
+            album: track.album.name.split("(")[0].trim(),
             context_uri: track.album.uri,
             track_number: track.track_number,
           })),
         };
+        console.log("name", selectedPlaylist);
+        console.log("name inside trank", selectedPlaylist.tracks.name);
+
         dispatch({ type: reducerCases.SET_PLAYLIST, selectedPlaylist });
       } catch (error) {
         console.error(error);
@@ -71,8 +77,12 @@ export default function Body() {
             </div>
           </div>
           <div className="list">
-            <div className="header_row flex gap-4 mt-[1rem] text-[#dddcdc] sticky top-[15vh] py-[1rem] px-[3rem] transition-all duration-300 ease-in-out">
-              <div className="col flex-grow-30 basis-[0px] ">
+            <div
+              className={`header_row flex gap-4 mt-[1rem] text-[#dddcdc] sticky top-[15vh] py-[1rem] px-[3rem] transition-all duration-300 ease-in-out ${
+                headerBackground ? "bg-[#000000dc]" : "bg-none"
+              }`}
+            >
+              <div className="col flex-grow-[30] basis-[0px] ">
                 <span>#</span>
               </div>
               <div className="col flex-grow-[300] basic-[0px]">
@@ -82,7 +92,7 @@ export default function Body() {
                 <span>ALBUM</span>
               </div>
               <div className="col flex-grow-[10] basic-[0px]">
-                <span>#</span>
+                <FontAwesomeIcon icon={faClock} />
               </div>
             </div>
             <div className="tracks my-[2rem] flex flex-col mb-[5rem] ">
@@ -100,15 +110,21 @@ export default function Body() {
                   },
                   index
                 ) => {
+                  const msToMinutesAndSeconds = (ms) => {
+                    var minutes = Math.floor(ms / 60000);
+                    var seconds = ((ms % 60000) / 1000).toFixed(0);
+                    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                  };
+
                   return (
                     <div
-                      className="row flex px-4 py-2 hover:bg-[rgba(0,0,0,0.7)] "
+                      className="row flex gap-4 py-[1rem] px-[3rem] hover:bg-[rgba(0,0,0,0.7)] "
                       key={id}
                     >
-                      <div className="col flex-shrink-0 flex-basic-[10%] flex items-center text-[#dddcdc]">
+                      <div className="col flex-grow-[30] basis-[0px] flex items-center text-[#dddcdc]">
                         <span>{index + 1}</span>
                       </div>
-                      <div className="col flex-grow flex-basic-[55%] detail flex items-center text-[#dddcdc] gap-[1rem]">
+                      <div className="col flex-grow-[250] basic-[0px] detail flex items-center text-[#dddcdc] gap-[1rem]">
                         <div className="image">
                           <img
                             src={image}
@@ -122,11 +138,11 @@ export default function Body() {
                           <span>{artists}</span>
                         </div>
                       </div>
-                      <div className="col flex-shrink-0 flex-basic-[30%] flex items-center text-[#dddcdc]">
+                      <div className="col flex-grow-[200] basic-[0px] flex items-center    text-[#dddcdc]">
                         <span>{album}</span>
                       </div>
-                      <div className="col flex-shrink-0 flex-basic-[5%] flex items-center text-[#dddcdc]">
-                        <span>{duration}</span>
+                      <div className="col flex-grow-[10] basic-[0px] flex items-center text-[#dddcdc]">
+                        <span>{msToMinutesAndSeconds(duration)}</span>
                       </div>
                     </div>
                   );
