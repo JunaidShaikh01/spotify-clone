@@ -10,7 +10,7 @@ export default function Body({ headerBackground }) {
 
   useEffect(() => {
     const getInitialPlaylist = async () => {
-      console.log("Selected Playlist id", selectedPlaylistId);
+      // console.log("Selected Playlist id", selectedPlaylistId);
       try {
         const response = await axios.get(
           `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
@@ -21,7 +21,8 @@ export default function Body({ headerBackground }) {
             },
           }
         );
-        console.log("Response: ", response);
+        // console.log("Response: ", response);
+
         const selectedPlaylist = {
           id: response.data.id,
           name: response.data.name,
@@ -42,8 +43,9 @@ export default function Body({ headerBackground }) {
             track_number: track.track_number,
           })),
         };
-        console.log("name", selectedPlaylist);
-        console.log("name inside trank", selectedPlaylist.tracks.name);
+
+        // console.log("name", selectedPlaylist);
+        // console.log("name inside trank", selectedPlaylist.tracks.name);
 
         dispatch({ type: reducerCases.SET_PLAYLIST, selectedPlaylist });
       } catch (error) {

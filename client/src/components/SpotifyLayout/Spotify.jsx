@@ -45,7 +45,7 @@ export default function Spotify() {
       <div className="spotify_body grid grid-cols-[15vw_85vw] h-full w-full bg-gradient-to-b from-transparent to-black bg-[#205764]">
         <Sidebar />
         <div
-          className="body overflow-auto scrollbar-thin scrollbar-thumb-gray-400"
+          className="body overflow-auto scrollbar-thin scrollbar-thumb-custom-scrollbar-thumb"
           ref={bodyRef}
           onScroll={bodyScrolled}
         >
