@@ -8,8 +8,6 @@ export default function CurrentTrack() {
 
   useEffect(() => {
     const getCurrentlyPlaying = async () => {
-      //   console.log("Selected Playlist id", selectedPlaylistId);
-
       try {
         const response = await axios.get(
           `https://api.spotify.com/v1/me/player/currently-playing`,
@@ -20,19 +18,18 @@ export default function CurrentTrack() {
             },
           }
         );
-        // console.log("Response: ", response);
-
         const { item } = response.data;
-        const currentlyPlaying = {
-          id: item.id,
-          name: item.name.split("(")[0].trim(),
-          artists: item.artists.map((artist) => artist.name),
-          album: item.album.name,
-          image: item.album.images[2].url,
-          // url : item.external_urls.spotify,
-        };
-        // console.log("Curre/ntly Playing", currentlyPlaying);
-        dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying });
+        if (response.data !== " ") {
+          const currentlyPlaying = {
+            id: item.id,
+            name: item.name.split("(")[0].trim(),
+            artists: item.artists.map((artist) => artist.name),
+            album: item.album.name,
+            image: item.album.images[2].url,
+          };
+
+          dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying });
+        }
       } catch (error) {
         console.error(error);
       }
