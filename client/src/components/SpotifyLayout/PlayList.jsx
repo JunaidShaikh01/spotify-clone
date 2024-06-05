@@ -34,6 +34,10 @@ export default function PlayList() {
       getPlaylistData();
     }
   }, [token, dispatch]);
+
+  const changeCurrentPlaylist = (selectedPlaylistId) => {
+    dispatch({ type: reducerCases.SET_PLAYLIST_ID, selectedPlaylistId });
+  };
   return (
     <div className="h-[100%] overflow-hidden">
       <ul className="list-none flex flex-col gap-[1rem] p-[1rem] h-[55vh] max-h-[100%]  overflow-auto scrollbar-thin scrollbar-thumb-gray-400">
@@ -42,6 +46,7 @@ export default function PlayList() {
             <li
               className="flex gap-[1rem] cursor-pointer transition duration-300 ease-in-out hover:text-white items-center"
               key={id}
+              onClick={() => changeCurrentPlaylist(id)}
             >
               {name}
             </li>
