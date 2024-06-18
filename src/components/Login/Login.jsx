@@ -3,7 +3,7 @@ import React from "react";
 export default function Login() {
   const handleClick = () => {
     const client_id = "92a9ac844c8d4a0bbbd8b68d45447f15";
-    const redirect_uri = "http://localhost:5173/";
+    const redirect_uri = "https://spotify-clone-snowy-ten.vercel.app/";
     const api_uri = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-private",
